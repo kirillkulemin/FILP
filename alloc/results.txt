@@ -1,4 +1,5 @@
 own_alloc:
+file size: 927547
 time: 120
 1 : ├Е┬Уcumenical
 2 : youthful
@@ -15,6 +16,7 @@ time: 120
 ...
 
 default_alloc:
+file size: 927547
 time: 143
 1: ├Е┬Уcumenical
 2: youthful

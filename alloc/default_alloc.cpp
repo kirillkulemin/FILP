@@ -14,6 +14,7 @@ char* open_file()
         FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING,
         FILE_ATTRIBUTE_NORMAL, 0);
     DWORD buf_size = GetFileSize(file_handle, NULL);
+    cout << "file size: " << buf_size << endl;
     char* buf = new char[1 + buf_size];
     DWORD sr;
     ReadFile(file_handle, buf, buf_size, &sr, NULL);

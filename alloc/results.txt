@@ -1,0 +1,31 @@
+own_alloc:
+time: 120
+1 : ├Е┬Уcumenical
+2 : youthful
+3 : ├В┬з
+4 : wrought
+5 : youth
+6 : women
+7 : yoke
+8 : yield
+9 : zeal
+10 : witnessed
+11 : weight
+12 : went
+...
+
+default_alloc:
+time: 143
+1: ├Е┬Уcumenical
+2: youthful
+3: ├В┬з
+4: wrought
+5: youth
+6: women
+7: yoke
+8: yield
+9: zeal
+10: witnessed
+11: weight
+12: went
+...

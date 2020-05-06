@@ -33,11 +33,14 @@ private:
     Block* block = new Block();
     int mask = 0;
     int* levelCount;
+    int maxDeg;
 public:
     OwnAllocator(size_t newSize)
     {
-        int maxDeg = bsr(newSize) + 1;
+        maxDeg = bsr(newSize) + 1;
         levelCount = new int[maxDeg + 1];
+        for (int i = 0; i <= maxDeg; i++)
+            levelCount[i] = 0;
         levelCount[maxDeg] = 1;
         mask = setOneOnPosition(mask, maxDeg);
         block -> Next = block;
@@ -80,6 +83,14 @@ public:
         block -> Free = false;
         return block -> Data;
     }
+    void printLevels()
+    {
+        for (int i = 0; i <= maxDeg; i++)
+        {
+            if (levelCount[i] > 0)
+                cout << i << " " << levelCount[i] <<endl;
+        }
+    }
     void deallocate(void* data)
     {
         while(true)
@@ -120,4 +131,19 @@ public:
 };
 
 int main()
-{}
+{
+    auto a = new OwnAllocator(10);
+    a->printLevels();
+    auto d = a->allocate(8);
+    auto b = a->allocate(4);
+    auto c = a->allocate(2);
+    auto s = a->allocate(1);
+    auto v = a->allocate(1);
+    a->printLevels();
+    a->deallocate(b);
+    a->deallocate(c);
+    a->deallocate(d);
+    a->deallocate(s);
+    a->deallocate(v);
+    a->printLevels();
+}

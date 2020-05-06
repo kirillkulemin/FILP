@@ -135,9 +135,13 @@ int main()
     auto a = new OwnAllocator(10);
     a->printLevels();
     auto d = a->allocate(8);
+    a->printLevels();
     auto b = a->allocate(4);
+    a->printLevels();
     auto c = a->allocate(2);
+    a->printLevels();
     auto s = a->allocate(1);
+    a->printLevels();
     auto v = a->allocate(1);
     a->printLevels();
     a->deallocate(b);

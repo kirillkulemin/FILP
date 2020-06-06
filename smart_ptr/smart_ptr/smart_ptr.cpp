@@ -5,15 +5,19 @@ using namespace std;
 template <typename T>
 class smart_pointer
 {
+private:
     T* obj;
     int ref_count;
-
-    smart_pointer(){}
-
-    smart_pointer(T* ptr)
+public:
+    smart_pointer(T* ptr=nullptr)
     {
         obj = ptr;
 		ref_count++;
+    }
+
+    ~smart_pointer()
+    {
+        delete obj;
     }
 
     T* get_obj()
@@ -34,12 +38,12 @@ class smart_pointer
         if (ref_count == 0)
 		{
 			delete obj;
-			obj = NULL;
+			obj = nullptr;
 		}
 		return ref_count;
     }
 
-    T operator*()
+    T& operator*()
     {
 		return *obj;
 	}
@@ -59,10 +63,39 @@ class smart_pointer
 		return *this;
 	}
 
-    smart_pointer operator->() const
+    T* operator->() const
 	{
 		return obj;
 	}
+
+	bool isNull() const
+	{
+	    return obj == nullptr;
+    }
 };
 
-int main(){}
+
+//example
+class Example
+{
+public:
+	int field;
+};
+
+int multiply(smart_pointer<Example> example)
+{
+	return example->field * 3;
+}
+
+int main()
+{
+	smart_pointer<Example> without_field;
+	smart_pointer<Example> with_field(new Example());
+	without_field = with_field;
+	without_field->field = 10;
+	cout << "field value with -> " << with_field->field << "\n";
+	cout << "field value with . " << (*with_field).field << "\n";
+	with_field->field = multiply(with_field);
+	cout << "without field value after = " << without_field->field << "\n";
+	cout << "with field value " << with_field->field << "\n";
+}

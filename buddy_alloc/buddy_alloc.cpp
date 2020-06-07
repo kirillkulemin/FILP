@@ -130,6 +130,8 @@ public:
     }
 };
 
+//example
+
 int main()
 {
     auto a = new OwnAllocator(10);
